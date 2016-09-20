@@ -43,9 +43,15 @@ namespace Serilog
         /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
         /// <param name="keyValue">User provided key value pair to enrich with.</param>
         /// <returns>Configuration object allowing method chaining.</returns>
-        public static LoggerConfiguration WithProperty(this LoggerEnrichmentConfiguration enrichmentConfiguration, KeyValuePair<string, string> keyValue)
+        public static LoggerConfiguration WithProperty(this LoggerEnrichmentConfiguration enrichmentConfiguration, KeyValuePair<string, object> keyValue)
         {
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
+
+            if (keyValue.Equals(default(KeyValuePair<string, object>)))
+            {
+                throw new ArgumentNullException(nameof(keyValue));
+            }
+
             return enrichmentConfiguration.With(new[] { new KeyValueEnricher(keyValue) });
         }
     }

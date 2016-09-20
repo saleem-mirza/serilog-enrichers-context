@@ -20,9 +20,9 @@ namespace Serilog.Enrichers
 
     internal class KeyValueEnricher : ILogEventEnricher
     {
-        private KeyValuePair<string, string> _keyValue;
+        private KeyValuePair<string, object> _keyValue;
 
-        public KeyValueEnricher(KeyValuePair<string, string> keyValue)
+        public KeyValueEnricher(KeyValuePair<string, object> keyValue)
         {
             _keyValue = keyValue;
         }
