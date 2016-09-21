@@ -20,7 +20,7 @@ namespace Serilog.Enrichers
 
     internal class EnvironmentEnricher : ILogEventEnricher
     {
-        private string _environmentVariable;
+        private readonly string _environmentVariable;
 
         public EnvironmentEnricher(string variableName)
         {
@@ -29,10 +29,10 @@ namespace Serilog.Enrichers
 
         public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
-            var env_value = Environment.GetEnvironmentVariable(_environmentVariable);
-            if (!string.IsNullOrWhiteSpace(env_value))
+            var envValue = Environment.GetEnvironmentVariable(_environmentVariable);
+            if (!string.IsNullOrWhiteSpace(envValue))
             {
-                logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty(_environmentVariable, env_value));
+                logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty(_environmentVariable, envValue));
             }            
         }
     }

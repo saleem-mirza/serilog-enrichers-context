@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using Serilog.Configuration;
+using Serilog.Enrichers;
+
 namespace Serilog
 {
-    using System;
-    using System.Collections.Generic;
-    using Configuration;
-    using Enrichers;
-
     /// <summary>
     /// Extends <see cref="LoggerConfiguration"/> to add enrichers for <see cref="System.Environment"/>.
     /// capabilities.
@@ -34,7 +34,7 @@ namespace Serilog
         public static LoggerConfiguration WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration, string environmentVariable)
         {
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
-            return enrichmentConfiguration.With(new[] { new EnvironmentEnricher(environmentVariable) });
+            return enrichmentConfiguration.With(new EnvironmentEnricher(environmentVariable));
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Serilog
                 throw new ArgumentNullException(nameof(keyValue));
             }
 
-            return enrichmentConfiguration.With(new[] { new KeyValueEnricher(keyValue) });
+            return enrichmentConfiguration.With(new KeyValueEnricher(keyValue));
         }
     }
 }
