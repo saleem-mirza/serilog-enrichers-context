@@ -8,7 +8,7 @@
     <language>en-US</language>
     <projectUrl>http://serilog.net</projectUrl>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <iconUrl>https://www.nuget.org/packages?q=Serilog.enrichers</iconUrl>
+    <iconUrl>http://serilog.net/images/serilog-enricher-nuget.png</iconUrl>
     <tags>serilog logging enricher environment</tags>
     <dependencies>
       <dependency id="Serilog" version="[2.2.1,)" />
