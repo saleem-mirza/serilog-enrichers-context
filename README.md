@@ -1,4 +1,4 @@
-# Serilog.Enrichers.Context
+# Serilog.Enrichers.Context 
 
 Enriches Serilog events with information from the environment variables or user provided custom property.
 
@@ -64,3 +64,5 @@ Assuming **AzureDocumentDB** sink is configured, one should see following log me
     "id": "9b672004-4e6b-31a2-3e92-5ea49361c312"
   }
 ```
+
+[![Build status](https://ci.appveyor.com/api/projects/status/l81s1m0fd8f1y2v4?svg=true)](https://ci.appveyor.com/project/SaleemMirza/serilog-enrichers-context)
