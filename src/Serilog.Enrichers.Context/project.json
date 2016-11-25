@@ -1,6 +1,6 @@
 {
     "title": "Serilog.Enrichers.Context",
-    "version": "2.0.5-*",
+    "version": "2.2.37-*",
     "description": "Enrich Serilog event with environment variables.",
     "authors": [
         "Saleem Mirza"
