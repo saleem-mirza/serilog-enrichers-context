@@ -3,7 +3,7 @@
 Enriches Serilog events with information from the environment variables or user provided custom property.
 
 ## Getting started
-Install [Serilog.Enriches.Context](https://www.nuget.org/packages/Serilog.Enrichers.Context) from NuGet
+Install [Serilog.Enrichers.Context](https://www.nuget.org/packages/Serilog.Enrichers.Context) from NuGet
 
 ```PowerShell
 Install-Package Serilog.Enriches.Context
