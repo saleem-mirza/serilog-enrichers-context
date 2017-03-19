@@ -76,7 +76,7 @@ namespace Serilog
         {
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
 
-            return enrichmentConfiguration.With(new KeyValueEnricher(new KeyValuePair<string, object>("UserName", Environment.UserName)));
+            return enrichmentConfiguration.With(new KeyValueEnricher(new KeyValuePair<string, object>("UserName", Environment.GetEnvironmentVariable("UserName"))));
         }
     }
 }
