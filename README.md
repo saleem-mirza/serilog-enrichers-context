@@ -6,7 +6,7 @@ Enriches Serilog events with information from the environment variables or user 
 Install [Serilog.Enrichers.Context](https://www.nuget.org/packages/Serilog.Enrichers.Context) from NuGet
 
 ```PowerShell
-Install-Package Serilog.Enriches.Context
+Install-Package Serilog.Enrichers.Context
 ```
 
 ### Enriching with environment variables.
