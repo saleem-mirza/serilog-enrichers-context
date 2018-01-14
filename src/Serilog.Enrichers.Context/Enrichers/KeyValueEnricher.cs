@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Newtonsoft.Json;
+
 namespace Serilog.Enrichers
 {
     using System.Collections.Generic;
@@ -29,7 +31,8 @@ namespace Serilog.Enrichers
 
         public void Enrich(LogEvent logEvent, ILogEventPropertyFactory propertyFactory)
         {
-            logEvent.AddPropertyIfAbsent(propertyFactory.CreateProperty(_keyValue.Key, _keyValue.Value));
+            logEvent.AddPropertyIfAbsent(
+                propertyFactory.CreateProperty(_keyValue.Key, JsonConvert.SerializeObject(_keyValue.Value)));
         }
     }
 }
