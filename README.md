@@ -66,3 +66,7 @@ Assuming **AzureDocumentDB** sink is configured, one should see following log me
 ```
 
 [![Build status](https://ci.appveyor.com/api/projects/status/l81s1m0fd8f1y2v4?svg=true)](https://ci.appveyor.com/project/SaleemMirza/serilog-enrichers-context)
+
+---
+
+Many thanks to the [<img src="resources/jetbrains.svg" width="100px"/>](https://www.jetbrains.com "JetBrains") for donating awesome suite of tools making this project possible.
