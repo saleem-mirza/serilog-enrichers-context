@@ -49,11 +49,12 @@ namespace Serilog
         /// </summary>
         /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
         /// <param name="environmentVariable">Environment variable to enrich with.</param>
+        /// <param name="propertyName">Optional name to use for the logevent property. Defaults to <paramref name="environmentVariable"/> if not provided</param>
         /// <returns>Configuration object allowing method chaining.</returns>
-        public static LoggerConfiguration WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration, string environmentVariable)
+        public static LoggerConfiguration WithEnvironment(this LoggerEnrichmentConfiguration enrichmentConfiguration, string environmentVariable, string propertyName = null)
         {
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
-            return enrichmentConfiguration.With(new EnvironmentEnricher(environmentVariable));
+            return enrichmentConfiguration.With(new EnvironmentEnricher(environmentVariable, propertyName ?? environmentVariable));
         }
 
         /// <summary>
