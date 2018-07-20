@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Serilog.Configuration;
 using Serilog.Enrichers;
+using Serilog.Events;
 
 namespace Serilog
 {
@@ -42,6 +43,57 @@ namespace Serilog
             }
 
             return enrichmentConfiguration.With(new KeyValueEnricher(keyValue));
+        }
+
+        /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<LogEvent, string> func)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func));
+        }
+
+        /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<string> func)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func));
+        }
+
+        
+        /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <param name="parameter">Parameter to pass to user defined function</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<object, string> func,
+            object parameter)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func, parameter));
         }
 
         /// <summary>

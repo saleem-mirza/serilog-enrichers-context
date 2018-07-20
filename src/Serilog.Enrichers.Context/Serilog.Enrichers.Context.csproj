@@ -1,35 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <AssemblyTitle>Serilog.Enrichers.Context</AssemblyTitle>
     <Authors>Saleem Mirza</Authors>
     <AssemblyName>Serilog.Enrichers.Context</AssemblyName>
-	<Description>Enrich Serilog event with environment variables.</Description>		
+    <Description>Enrich Serilog event with environment variables.</Description>
     <PackageId>Serilog.Enrichers.Context</PackageId>
     <PackageTags>serilog;enrichers;context;environment;system;variables</PackageTags>
     <PackageIconUrl>http://serilog.net/images/serilog-enricher-nuget.png</PackageIconUrl>
     <PackageProjectUrl>http://serilog.net</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <Copyright>Copyright © Zethian Inc. 2013-2017</Copyright>
-    <AssemblyVersion>3.1.0.0</AssemblyVersion>	
-	<Version>3.1.0</Version>
+    <AssemblyVersion>3.1.0.0</AssemblyVersion>
+    <Version>3.1.0</Version>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Serilog.snk</AssemblyOriginatorKeyFile>
-    <TargetFrameworks>netstandard1.3;net452;netcoreapp2.1</TargetFrameworks>	
+    <TargetFrameworks>netstandard1.3;net452;netcoreapp2.1</TargetFrameworks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(VersionSuffix)'!='' ">
     <Version>$(Version)-$(VersionSuffix)</Version>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />      
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Serilog" Version="2.7.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
 </Project>
