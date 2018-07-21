@@ -65,4 +65,30 @@ Assuming **AzureDocumentDB** sink is configured, one should see following log me
   }
 ```
 
+### Enriching with user defined function or lambda
+
+Enriching logging with user defined function is now supported. Function accepts LogEvent or object type parameter to act on.
+It's upto developer's imagination what to do with functions.
+
+####Example
+
+```C#
+var logger = new LoggerConfiguration()
+    .ReadFrom.AppSettings()
+    .Enrich.WithFunction("f0", x => { 
+        return x.ToString().ToUpper(); 
+     }, Environment.MachineName)
+    .Enrich.WithFunction("f1", () => DateTime.Now.Ticks.ToString())
+    .Enrich.WithFunction("f2", 
+        e => $"{e.Level.ToString().ToUpper()} - {e.Timestamp.Ticks}"
+    )
+    .CreateLogger();
+    
+logger.Information("This informational message will enrich with custom property");    
+```
+
 [![Build status](https://ci.appveyor.com/api/projects/status/l81s1m0fd8f1y2v4?svg=true)](https://ci.appveyor.com/project/SaleemMirza/serilog-enrichers-context)
+
+---
+
+Many thanks to the [<img src="resources/jetbrains.svg" width="100px"/>](https://www.jetbrains.com "JetBrains") for donating awesome suite of tools making this project possible.

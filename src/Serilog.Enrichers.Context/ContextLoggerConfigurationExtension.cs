@@ -14,8 +14,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Serilog.Configuration;
 using Serilog.Enrichers;
+using Serilog.Events;
 
 namespace Serilog
 {
@@ -44,6 +46,57 @@ namespace Serilog
         }
 
         /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<LogEvent, string> func)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func));
+        }
+
+        /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<string> func)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func));
+        }
+
+        
+        /// <summary>
+        /// Enrich log events with a Function.
+        /// </summary>
+        /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
+        /// <param name="key">unique to represent value returned by function</param>
+        /// <param name="func">User provided function to execute</param>
+        /// <param name="parameter">Parameter to pass to user defined function</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+
+        public static LoggerConfiguration WithFunction(
+            this LoggerEnrichmentConfiguration enrichmentConfiguration,
+            string key,
+            Func<object, string> func,
+            object parameter)
+        {
+            return enrichmentConfiguration.With(new FunctionEnricher(key, func, parameter));
+        }
+
+        /// <summary>
         /// Enrich log events with a Environment variables.
         /// </summary>
         /// <param name="enrichmentConfiguration">Logger enrichment configuration.</param>
@@ -64,7 +117,15 @@ namespace Serilog
         {
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
 
-            return enrichmentConfiguration.With(new KeyValueEnricher(new KeyValuePair<string, object>("MachineName", Environment.MachineName)));
+            var machineName = "COMPUTERNAME";
+#if NETSTANDARD1_3
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                machineName = "HOSTNAME";
+            }
+#endif
+
+            return enrichmentConfiguration.With(new KeyValueEnricher(new KeyValuePair<string, object>("MachineName", Environment.GetEnvironmentVariable(machineName))));
         }
 
         /// <summary>
