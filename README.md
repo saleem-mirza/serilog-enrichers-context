@@ -12,7 +12,7 @@ Install-Package Serilog.Enrichers.Context
 ### Enriching with environment variables.
 Configure logger by calling `.Enrich.WithEnvironment(...)`
 
-####Example
+#### Example
 ```C#
 var logger = new LoggerConfiguration()
     .ReadFrom.AppSettings()
@@ -40,8 +40,7 @@ Configure logger by calling `.Enrich.WithProperty(KeyValuePair<string, object>)`
 
 `.Enrich.WithProperty(...)` is very useful when multiple applications are logging to centralized store and you want to distinguish logs by some unique property for better discoverability.
 
-####Example
-
+#### Example
 ```C#
 var logger = new LoggerConfiguration()
     .ReadFrom.AppSettings()
@@ -70,8 +69,7 @@ Assuming **AzureDocumentDB** sink is configured, one should see following log me
 Enriching logging with user defined function is now supported. Function accepts LogEvent or object type parameter to act on.
 It's upto developer's imagination what to do with functions.
 
-####Example
-
+#### Example
 ```C#
 var logger = new LoggerConfiguration()
     .ReadFrom.AppSettings()
@@ -91,4 +89,5 @@ logger.Information("This informational message will enrich with custom property"
 
 ---
 
-Many thanks to the [<img src="resources/jetbrains.svg" width="100px"/>](https://www.jetbrains.com "JetBrains") for donating awesome suite of tools making this project possible.
+[<img src="resources/jetbrains.svg" style="float:left;width:100px"/>](https://www.jetbrains.com "JetBrains")
+Thanks to the [JetBrains](https://www.jetbrains.com "JetBrains") for donating incredible suite of tools making this project possible.
