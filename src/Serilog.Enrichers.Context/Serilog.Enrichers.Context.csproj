@@ -8,7 +8,7 @@
         <PackageTags>serilog;enrichers;context;environment;system;variables</PackageTags>
         <PackageIconUrl>http://serilog.net/images/serilog-enricher-nuget.png</PackageIconUrl>
         <PackageProjectUrl>http://serilog.net</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/saleem-mirza/serilog-sinks-azure-analytics</RepositoryUrl>
+        <RepositoryUrl>https://github.com/saleem-mirza/serilog-enrichers-context</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Copyright>Copyright © Zethian Inc. 2013-2019</Copyright>
         <AssemblyVersion>4.5.0.0</AssemblyVersion>
