@@ -118,12 +118,11 @@ namespace Serilog
             if (enrichmentConfiguration == null) throw new ArgumentNullException(nameof(enrichmentConfiguration));
 
             var machineName = "COMPUTERNAME";
-#if NETSTANDARD1_3
+
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 machineName = "HOSTNAME";
             }
-#endif
 
             return enrichmentConfiguration.With(new KeyValueEnricher(new KeyValuePair<string, object>("MachineName", Environment.GetEnvironmentVariable(machineName))));
         }
